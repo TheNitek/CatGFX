@@ -1,0 +1,28 @@
+{
+  "name": "CatGFX",
+  "version": "0.0.1",
+  "description":"Adafruit GFX compatible arduino library for using cat thermal printers with the ESP32 .",
+  "keywords":"Arduino,ESP32,Cat,ThermalPrinter,Printer,BLE",
+  "license": "Unlicense",
+  "frameworks": "arduino",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/TheNitek/CatGFX.git"
+  },
+  "authors":
+  {
+    "name": "=Claus Naeveke",
+    "email": "claus+catgfx@naeveke.de",
+    "maintainer": true
+  },
+  "dependencies":
+  [
+    {
+        "name": "adafruit/Adafruit GFX Library",
+    },
+    {
+        "name": "adafruit/Adafruit BusIO",
+    }
+  ]
+}
