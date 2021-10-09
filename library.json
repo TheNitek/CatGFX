@@ -19,10 +19,10 @@
   "dependencies":
   [
     {
-        "name": "adafruit/Adafruit GFX Library",
+        "name": "adafruit/Adafruit GFX Library"
     },
     {
-        "name": "adafruit/Adafruit BusIO",
+        "name": "adafruit/Adafruit BusIO"
     }
   ]
 }
