@@ -5,6 +5,7 @@
   "keywords":"Arduino,ESP32,Cat,ThermalPrinter,Printer,BLE",
   "license": "Unlicense",
   "frameworks": "arduino",
+  "platforms": ["espressif32"],
   "repository":
   {
     "type": "git",
@@ -12,7 +13,7 @@
   },
   "authors":
   {
-    "name": "=Claus Naeveke",
+    "name": "Claus Naeveke",
     "email": "claus+catgfx@naeveke.de",
     "maintainer": true
   },
@@ -24,5 +25,12 @@
     {
         "name": "adafruit/Adafruit BusIO"
     }
-  ]
+  ],
+  "examples": [
+    {
+        "name": "Print Demo",
+        "base": "examples/print_demo",
+        "files": ["demo.ino"]
+    }
+]
 }
