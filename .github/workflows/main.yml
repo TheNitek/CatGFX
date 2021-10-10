@@ -31,12 +31,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install --upgrade platformio
         pio update
-    - name: Install library dependencies
-      run: |
-        pio lib -g install "adafruit/Adafruit BusIO"
-        pio lib -g install "adafruit/Adafruit GFX Library"
+        pip install "click!=8.0.2" 
     - name: Build
       run: |
-        pio ci --lib="." --board=esp32dev
+        pio ci --lib="." --board=esp32dev --project-option="lib_deps=SPI, Wire, adafruit/Adafruit BusIO, adafruit/Adafruit GFX Library"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}

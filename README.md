@@ -6,5 +6,5 @@ For usage information have a look examples folder.
 If you are looking for support for different printers (or a different micro controllers) you might want to have a look at [this library](https://github.com/bitbank2/Thermal_Printer)
 
 ## Information
-* [catprinter doc project](https://github.com/JJJollyjim/catprinter)
+* [cat printer doc project](https://github.com/JJJollyjim/catprinter)
 * [protocol docs](https://github.com/amber-sixel/catprinter/blob/contrib/COMMANDS.md)
