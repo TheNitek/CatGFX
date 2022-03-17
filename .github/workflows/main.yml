@@ -31,7 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install --upgrade platformio
         pio update
-        pip install "click!=8.0.2" 
+        pip install "click!=8.0.2"
     - name: Build
       run: |
         pio ci --lib="." --board=esp32dev --project-option="lib_deps=SPI, Wire, adafruit/Adafruit BusIO, adafruit/Adafruit GFX Library"
