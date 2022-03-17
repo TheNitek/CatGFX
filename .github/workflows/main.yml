@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        example: ["examples/print_demo/demo.ino"]
+        example: ["examples/print_demo/print_demo.ino"]
     
     steps:
     - uses: actions/checkout@v2
