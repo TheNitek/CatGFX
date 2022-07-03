@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <CatPrinter.h>
+#include <CatGFX.h>
 
 // Buffer which can hold 400 lines
 byte buffer[48 * 400] = {0};

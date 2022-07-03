@@ -1,6 +1,6 @@
 {
   "name": "CatGFX",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description":"Adafruit GFX compatible arduino library for using cat thermal printers with the ESP32 .",
   "keywords":"Arduino,ESP32,Cat,ThermalPrinter,Printer,BLE",
   "license": "Unlicense",

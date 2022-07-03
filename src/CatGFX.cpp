@@ -1,4 +1,4 @@
-#include "CatPrinter.h"
+#include "CatGFX.h"
 
 void CatPrinter::begin(byte *buffer, uint16_t size) {
   pixelBuffer = buffer;
