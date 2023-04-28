@@ -110,7 +110,8 @@ void CatPrinter::printBuffer(void) {
 void CatPrinter::onResult(BLEAdvertisedDevice advertisedDevice) {
   if (strcmp(advertisedDevice.getName().c_str(), "GT01") == 0 ||
       strcmp(advertisedDevice.getName().c_str(), "GB01") == 0 ||
-      strcmp(advertisedDevice.getName().c_str(), "GB02") == 0 ) {
+      strcmp(advertisedDevice.getName().c_str(), "GB02") == 0 ||
+      strcmp(advertisedDevice.getName().c_str(), "MX09") == 0 ) {
     blePrinterAddress = new BLEAddress(advertisedDevice.getAddress());
     Serial.print("Found Printer: ");
     Serial.println(blePrinterAddress->toString().c_str());
@@ -159,7 +160,7 @@ void CatPrinter::writeData(byte *data, uint8_t len) {
 void CatPrinter::startGraphics(void) {
   byte data[2] = {0x80, 0x3E};
   sendCmd(CatPrinter::Cmd::ENERGY, data, 2);
-  
+
   data[0] = 0x33;
   sendCmd(CatPrinter::Cmd::QUALITY, data, 1);
   data[0] = 0x00;
