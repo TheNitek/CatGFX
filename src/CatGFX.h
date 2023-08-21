@@ -15,12 +15,7 @@ class CatPrinter: public Adafruit_GFX, public BLEAdvertisedDeviceCallbacks {
       DRAWING_MODE = 0xBE,
       PRINT_COMPRESSED = 0xBF
     };
-    CatPrinter(uint16_t h): 
-      Adafruit_GFX(384, h),
-      WIDTH_BYTE((WIDTH + 7)/8),
-      SERVICE_UUID("0000AE30-0000-1000-8000-00805F9B34FB"),
-      CHAR_UUID_DATA("0000AE01-0000-1000-8000-00805F9B34FB")
-      {};
+	CatPrinter(uint16_t h);
     ~CatPrinter() {
       delete bleClient;
     }
@@ -38,6 +33,10 @@ class CatPrinter: public Adafruit_GFX, public BLEAdvertisedDeviceCallbacks {
     void fillScreen(uint16_t color) override;
     void startGraphics(void);
     void endGraphics(void);
+	void resetNameArray(void);
+	bool addNameArray(char *newname);
+	void printNameArray(void);
+
   private:
     byte *pixelBuffer = nullptr;
     uint16_t pixelBufferSize = 0;
@@ -51,6 +50,11 @@ class CatPrinter: public Adafruit_GFX, public BLEAdvertisedDeviceCallbacks {
     BLERemoteCharacteristic* pRemoteCharacteristicData = nullptr;
     BLEScan *bleScan = BLEDevice::getScan();
     BLEClient *bleClient = BLEDevice::createClient();;
+
+	//Indicates the end of the array with an empty string instead of NULL.
+	const static uint8_t NAME_ARRAY_SIZE = 6;
+	const static uint8_t NAME_STRING_SIZE = 8;
+	char printer_names[NAME_ARRAY_SIZE][NAME_STRING_SIZE];
 
     const byte LATTICE_START[11] = {0xAA, 0x55, 0x17, 0x38, 0x44, 0x5F, 0x5F, 0x5F, 0x44, 0x38, 0x2C};
     const byte LATTICE_END[11] = {0xAA, 0x55, 0x17, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x17};

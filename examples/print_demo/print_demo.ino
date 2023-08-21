@@ -14,6 +14,11 @@ void setup() {
   // Hand buffer to printer
   cat.begin(buffer, sizeof(buffer));
 
+  // Set the name of the printer to be searched
+  cat.printNameArray();
+  cat.resetNameArray();
+  cat.addNameArray((char *)"MX09");
+  
   // Every non-zero color is white
   cat.fillScreen(1);
   cat.setTextWrap(true);
