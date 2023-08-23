@@ -54,7 +54,7 @@ class CatPrinter: public Adafruit_GFX, public BLEAdvertisedDeviceCallbacks {
 	//Indicates the end of the array with an empty string instead of NULL.
 	const static uint8_t NAME_ARRAY_SIZE = 6;
 	const static uint8_t NAME_STRING_SIZE = 8;
-	char printer_names[NAME_ARRAY_SIZE][NAME_STRING_SIZE];
+	char printerNames[NAME_ARRAY_SIZE][NAME_STRING_SIZE];
 
     const byte LATTICE_START[11] = {0xAA, 0x55, 0x17, 0x38, 0x44, 0x5F, 0x5F, 0x5F, 0x44, 0x38, 0x2C};
     const byte LATTICE_END[11] = {0xAA, 0x55, 0x17, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x17};

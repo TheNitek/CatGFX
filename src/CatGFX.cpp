@@ -6,11 +6,17 @@ CatPrinter::CatPrinter(uint16_t h):
   SERVICE_UUID("0000AE30-0000-1000-8000-00805F9B34FB"),
   CHAR_UUID_DATA("0000AE01-0000-1000-8000-00805F9B34FB")
 {
-	  strcpy(this->printer_names[0], "GT01");
-	  strcpy(this->printer_names[1], "GB01");
-	  strcpy(this->printer_names[2], "GB02");
-	  strcpy(this->printer_names[3], "MX09");
-	  strcpy(this->printer_names[4], "");
+	if (this->NAME_ARRAY_SIZE >= 5)
+	{
+	  strcpy(this->printerNames[0], "GT01");
+	  strcpy(this->printerNames[1], "GB01");
+	  strcpy(this->printerNames[2], "GB02");
+	  strcpy(this->printerNames[3], "MX09");
+	  for (int i = 4; i < this->NAME_ARRAY_SIZE; i ++)
+		strcpy(this->printerNames[i], "");
+	}
+	else if (this->NAME_ARRAY_SIZE >= 1)
+		strcpy(this->printerNames[0], "");
 }
 
 void CatPrinter::begin(byte *buffer, uint16_t size) {
@@ -123,8 +129,8 @@ void CatPrinter::printBuffer(void) {
 void CatPrinter::onResult(BLEAdvertisedDevice advertisedDevice) {
 	uint8_t i = 0;
 
-	while (i < this->NAME_ARRAY_SIZE && strcmp(this->printer_names[i], "") != 0){
-	  if (strcmp(advertisedDevice.getName().c_str(), this->printer_names[i]) == 0) {
+	while (i < this->NAME_ARRAY_SIZE && strcmp(this->printerNames[i], "") != 0){
+	  if (strcmp(advertisedDevice.getName().c_str(), this->printerNames[i]) == 0) {
 		blePrinterAddress = new BLEAddress(advertisedDevice.getAddress());
 		Serial.print("Found Printer: ");
 		Serial.println(blePrinterAddress->toString().c_str());
@@ -206,7 +212,7 @@ void CatPrinter::fillScreen(uint16_t color) {
 void CatPrinter::resetNameArray(void)
 {
 	for (uint8_t i = 0; i < this->NAME_ARRAY_SIZE; i ++)
-		strcpy(this->printer_names[i], "");
+		strcpy(this->printerNames[i], "");
 }
 
 bool CatPrinter::addNameArray(char *newname)
@@ -217,21 +223,21 @@ bool CatPrinter::addNameArray(char *newname)
 		return (false);
 	while (i < this->NAME_ARRAY_SIZE)
 	{
-		if (strcmp(this->printer_names[i], "") != 0)
+		if (strcmp(this->printerNames[i], "") != 0)
 			i ++;
 		else
 			break ;
 	}
 	if (i >= this->NAME_ARRAY_SIZE - 1)
 		return (false);
-	strcpy(this->printer_names[i], newname);
+	strcpy(this->printerNames[i], newname);
 	return (true);
 }
 
 void CatPrinter::printNameArray(void)
 {
 	for (uint8_t i = 0; i < NAME_ARRAY_SIZE; i ++)
-		Serial.println(this->printer_names[i]);
+		Serial.println(this->printerNames[i]);
 }
 
 
