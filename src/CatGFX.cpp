@@ -13,7 +13,7 @@ CatPrinter::CatPrinter(uint16_t h):
 	  strcpy(this->printerNames[2], "GB02");
 	  strcpy(this->printerNames[3], "MX09");
 	  strcpy(this->printerNames[4], "MX10");
-	  for (int i = 4; i < this->NAME_ARRAY_SIZE; i ++)
+	  for (int i = 5; i < this->NAME_ARRAY_SIZE; i ++)
 		strcpy(this->printerNames[i], "");
 	}
 	else if (this->NAME_ARRAY_SIZE >= 1)
