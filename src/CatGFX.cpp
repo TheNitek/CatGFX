@@ -6,13 +6,14 @@ CatPrinter::CatPrinter(uint16_t h):
   SERVICE_UUID("0000AE30-0000-1000-8000-00805F9B34FB"),
   CHAR_UUID_DATA("0000AE01-0000-1000-8000-00805F9B34FB")
 {
-	if (this->NAME_ARRAY_SIZE >= 5)
+	if (this->NAME_ARRAY_SIZE >= 6)
 	{
 	  strcpy(this->printerNames[0], "GT01");
 	  strcpy(this->printerNames[1], "GB01");
 	  strcpy(this->printerNames[2], "GB02");
 	  strcpy(this->printerNames[3], "MX09");
-	  for (int i = 4; i < this->NAME_ARRAY_SIZE; i ++)
+	  strcpy(this->printerNames[4], "MX10");
+	  for (int i = 5; i < this->NAME_ARRAY_SIZE; i ++)
 		strcpy(this->printerNames[i], "");
 	}
 	else if (this->NAME_ARRAY_SIZE >= 1)
