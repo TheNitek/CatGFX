@@ -44,7 +44,9 @@ bool CatPrinter::connect(void) {
 
 bool CatPrinter::connect(BLEAddress &address) {
   if(!bleClient->connect(address)) {
+#ifdef DEBUG
     Serial.println("Connect failed");
+#endif
     return false;
   }
 
@@ -52,13 +54,17 @@ bool CatPrinter::connect(BLEAddress &address) {
   if(pRemoteService != nullptr) {
     pRemoteCharacteristicData = pRemoteService->getCharacteristic(CHAR_UUID_DATA);
     if(pRemoteCharacteristicData != nullptr) {
+#ifdef DEBUG
       Serial.println("Got data transfer characteristic!");
+#endif
       return true;
     }
   }
   else {
       bleClient->disconnect();
+#ifdef DEBUG
       Serial.println("Data service not found");
+#endif
   }
   return false;
 }
@@ -130,13 +136,15 @@ void CatPrinter::printBuffer(void) {
 void CatPrinter::onResult(BLEAdvertisedDevice advertisedDevice) {
 	uint8_t i = 0;
 
-	while (i < this->NAME_ARRAY_SIZE && strcmp(this->printerNames[i], "") != 0){
+	while (i < this->NAME_ARRAY_SIZE && strcmp(this->printerNames[i], "") != 0) {
 	  if (strcmp(advertisedDevice.getName().c_str(), this->printerNames[i]) == 0) {
-		blePrinterAddress = new BLEAddress(advertisedDevice.getAddress());
-		Serial.print("Found Printer: ");
-		Serial.println(blePrinterAddress->toString().c_str());
-		bleScan->stop();
-  	  	break ;
+		  blePrinterAddress = new BLEAddress(advertisedDevice.getAddress());
+#ifdef DEBUG
+		  Serial.print("Found Printer: ");
+		  Serial.println(blePrinterAddress->toString().c_str());
+#endif
+		  bleScan->stop();
+  	  break ;
 	  }
 	  else
 		i ++;
@@ -170,14 +178,18 @@ void CatPrinter::writeData(byte *data, uint8_t len) {
 
   // Write in smaller packages, because bigger ones don't work for unkown reason
   while (len > PACKET_SIZE) {
-      Serial.print(".");
-      pRemoteCharacteristicData->writeValue(data, PACKET_SIZE);
-      data += PACKET_SIZE;
-      len -= PACKET_SIZE;
+#ifdef DEBUG
+    Serial.print(".");
+#endif
+    pRemoteCharacteristicData->writeValue(data, PACKET_SIZE);
+    data += PACKET_SIZE;
+    len -= PACKET_SIZE;
   }
   if (len) {
     pRemoteCharacteristicData->writeValue(data, len);
-    Serial.println(".");
+#ifdef DEBUG
+    Serial.print(".");
+#endif
   }
 }
 
