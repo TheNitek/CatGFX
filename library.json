@@ -30,7 +30,7 @@
     {
         "name": "Print Demo",
         "base": "examples/print_demo",
-        "files": ["demo.ino"]
+        "files": ["print_demo.ino"]
     }
 ]
 }
