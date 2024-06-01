@@ -18,14 +18,10 @@
     "maintainer": true
   },
   "dependencies":
-  [
-    {
-        "name": "adafruit/Adafruit GFX Library"
-    },
-    {
-        "name": "adafruit/Adafruit BusIO"
-    }
-  ],
+  {
+        "adafruit/Adafruit GFX Library": "*",
+        "adafruit/Adafruit BusIO": "*"
+  }
   "examples": [
     {
         "name": "Print Demo",
