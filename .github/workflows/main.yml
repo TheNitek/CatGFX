@@ -28,9 +28,7 @@ jobs:
         key: ${{ runner.os }}-pio
     - uses: actions/setup-python@v5
     - name: Install PlatformIO
-      run: |
-        pip install --upgrade platformio
-        pio pkg update
+      run: pip install --upgrade platformio
     - name: Build
       run: pio ci --lib="." --board=esp32dev --project-option="lib_deps=SPI, Wire, adafruit/Adafruit BusIO, adafruit/Adafruit GFX Library"
       env:
