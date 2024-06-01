@@ -27,6 +27,8 @@ jobs:
           ~/.platformio/.cache
         key: ${{ runner.os }}-pio
     - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
     - name: Install PlatformIO
       run: pip install --upgrade platformio
     - name: Build
