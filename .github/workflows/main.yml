@@ -12,26 +12,25 @@ jobs:
         example: ["examples/print_demo/print_demo.ino"]
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Cache pip
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: ${{ runner.os }}-pip-
     - name: Cache PlatformIO
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.platformio
         key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
     - name: Install PlatformIO
       run: |
         python -m pip install --upgrade pip
         pip install --upgrade platformio
         pio update
-        pip install "click!=8.0.2"
     - name: Build
       run: |
         pio ci --lib="." --board=esp32dev --project-option="lib_deps=SPI, Wire, adafruit/Adafruit BusIO, adafruit/Adafruit GFX Library"
