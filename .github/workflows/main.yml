@@ -1,10 +1,16 @@
 name: PlatformIO CI
 
-on: [push]
+on:
+  push:
+  pull_request:
+  release:
+    types: [ published, created, edited ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -13,26 +19,19 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-    - name: Cache pip
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: ${{ runner.os }}-pip-
     - name: Cache PlatformIO
       uses: actions/cache@v4
       with:
-        path: ~/.platformio
-        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-    - name: Set up Python
-      uses: actions/setup-python@v5
+        path: |
+          ~/.cache/pip
+          ~/.platformio/.cache
+        key: ${{ runner.os }}-pio
+    - uses: actions/setup-python@v5
     - name: Install PlatformIO
       run: |
-        python -m pip install --upgrade pip
         pip install --upgrade platformio
-        pio update
+        pio pkg update
     - name: Build
-      run: |
-        pio ci --lib="." --board=esp32dev --project-option="lib_deps=SPI, Wire, adafruit/Adafruit BusIO, adafruit/Adafruit GFX Library"
+      run: pio ci --lib="." --board=esp32dev --project-option="lib_deps=SPI, Wire, adafruit/Adafruit BusIO, adafruit/Adafruit GFX Library"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
