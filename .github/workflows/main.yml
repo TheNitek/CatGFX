@@ -18,7 +18,7 @@ jobs:
         example: ["examples/print_demo/print_demo.ino"]
     
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Cache PlatformIO
       uses: actions/cache@v5
       with:
